@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "i-row": "../../lib/iview/row/index",
+    "i-col": "../../lib/iview/col/index",
+    "i-count-down": "../../lib/iview/count-down/index",
+    "check-point-card": "../../components/CheckPointCard/CheckPointCard"
+  }
+}
