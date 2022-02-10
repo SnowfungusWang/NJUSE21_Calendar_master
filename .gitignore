@@ -17,7 +17,7 @@ node_modules/
 project.config.json
 
 # lib
-/miniprogram/lib
+# /miniprogram/lib
 
 #counter
 /.VSCodeCounter
