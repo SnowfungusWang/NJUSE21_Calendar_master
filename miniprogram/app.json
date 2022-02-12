@@ -9,20 +9,6 @@
     "navigationBarTitleText": "DDL KILLER",
     "navigationBarTextStyle": "white"
   },
-  "tabBar": {
-    "color": "#999",
-    "selectedColor": "#111",
-    "backgroundColor": "#f8f9fb",
-    "borderStyle": "white",
-    "list": [
-      {
-        "pagePath": "pages/todo/index",
-        "text": "DDLs",
-        "iconPath": "assets/app/todo-2.png",
-        "selectedIconPath": "assets/app/todo.png"
-      }
-    ]
-  },
   "sitemapLocation": "sitemap.json",
   "plugins": {
     "calendar": {

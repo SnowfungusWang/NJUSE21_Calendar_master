@@ -1,0 +1,9 @@
+[
+  {
+    "name": "GetCheckPointByUserIdAndDate",
+    "value": {
+      "beginDate": "2019-1-1",
+      "endDate": "2019-1-2"
+    }
+  }
+]

@@ -23,30 +23,10 @@ Page({
   },
   onShow: function () {
     var that = this
-    //获取队名
-    that.teamNameDict = []
-    wx.cloud.callFunction({
-      name: 'GetTeamByUserId',
-      success: res => {
-        let teamList = []
-        res.result.data.forEach(element => {
-          that.teamNameDict[element._id] = element.name
-          teamList.push({
-            teamId: element._id,
-            teamName: element.name
-          })
-        });
-        that.setData({
-          teamList
-        })
-        that.teamNameDict[""] = "个人"
-        // console.log('myTeams', that.teamNameDict)
-        that.fetchCpListAndSetDate(new Date(), that.refreshPage.bind(that))
-      },
-      fail: err => {
-        console.error(err)
-      },
-    })
+    that.teamNameDict = [];
+    that.teamNameDict[""] = "个人"
+    // console.log('myTeams', that.teamNameDict)
+    that.fetchCpListAndSetDate(new Date(), that.refreshPage.bind(that))
   },
   // 获取Cp数据, 时间范围为 [today, endDate]
   // 获取到数据之后callback

@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-card": "../../lib/iview/card/index",
+    "i-icon": "../../lib/iview/icon/index",
+    "i-checkbox": "../../lib/iview/checkbox/index",
+    "i-row": "../../lib/iview/row/index",
+    "i-col": "../../lib/iview/col/index"
+  }
+}
