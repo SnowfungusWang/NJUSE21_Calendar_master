@@ -1,0 +1,37 @@
+<view class="add_title">
+  <text>DDL名称：</text>
+  <input class="new-todo" value="{{ title }}" placeholder="加个DDL吧～" auto-focus bindinput="inputChangeHandle" bindconfirm="addTitleHandle" />
+</view>
+<view class="add_time">
+  <picker class='time-picker' mode="multiSelector" bindchange="bindStartMultiPickerChange" bindtap='pickerTap' bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">DDL时间：{{startDate}}</picker>
+</view>
+
+<view class='add_importance'>
+  <text>DDL类型：</text>
+  <radio-group class="radio-group" bindchange="radioChange">
+    <label class="radio" wx:for="{{items}}">
+      <radio value="{{item.name}}" checked="{{item.checked}}" color="{{ radioColor  }}" />
+      {{item.value}}
+    </label>
+  </radio-group>
+</view>
+
+<view class='add_belong'>
+  <!--下拉框  -->
+  <view class='state' bindtap='bindShowMsg'>
+    <text style='font-size: 38rpx;'>DDL归属：{{teamName}}</text>
+  </view>
+  <!-- 下拉需要显示的列表 -->
+  <view class="select_box" wx:if="{{isSelect}}">
+    <view class="select_one" bindtap="mySelect" wx:for="{{select}}" data-name="{{item.name}}" data-teamID="{{item.teamID}}">{{item.name}}</view>
+    <view class="select_two" bindtap="mySelect_person" data-name="个人">个人</view>
+  </view>
+</view>
+
+
+<form bindsubmit="bindFormSubmit">
+  <view class='add_alert'>
+    <textarea placeholder="请输入备注" name="fuck" value="{{textarea}}" bindblur='bindTextAreaBlur' focus='{{focus}}' />
+  </view>
+  <button form-type="submit" class='add_submit'>提交</button>
+</form>

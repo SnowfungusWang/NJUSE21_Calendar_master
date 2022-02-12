@@ -1,0 +1,12 @@
+[
+  {
+    "name": "CreateCheckPoint",
+    "value": {
+      "title": "第一个checkpoint",
+      "details": "详细说明",
+      "participateTeamId": 2,
+      "ddl": "2019-1-1",
+      "urgency": 1
+    }
+  }
+]

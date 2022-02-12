@@ -1,7 +1,5 @@
 {
-  "pages": [
-    "pages/todo/index"
-  ],
+  "pages": ["pages/todo/index", "pages/add/add"],
   "window": {
     "backgroundColor": "#83B8E9",
     "backgroundTextStyle": "light",
