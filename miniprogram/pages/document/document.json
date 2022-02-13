@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "calendar": "plugin://calendar/calendar",
+    "check-point-card": "../../components/CheckPointCard/CheckPointCard",
+    "i-spin": "../../lib/iview/spin/index"
+  }
+}

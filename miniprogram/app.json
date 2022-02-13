@@ -1,11 +1,35 @@
 {
-  "pages": ["pages/todo/index", "pages/add/add"],
+  "pages": [
+    "pages/todo/index", 
+    "pages/add/add",
+    "pages/document/document"
+  ],
   "window": {
     "backgroundColor": "#83B8E9",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#bc9f77",
     "navigationBarTitleText": "DDL KILLER",
     "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#111",
+    "backgroundColor": "#f8f9fb",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/todo/index",
+        "text": "DDLs",
+        "iconPath": "assets/app/todo-2.png",
+        "selectedIconPath": "assets/app/todo.png"
+      },
+      {
+        "pagePath": "pages/document/document",
+        "text": "记录",
+        "iconPath": "assets/app/rili-2.png",
+        "selectedIconPath": "assets/app/rili.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json",
   "plugins": {

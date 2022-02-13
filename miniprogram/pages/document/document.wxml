@@ -1,0 +1,32 @@
+<view>
+    <view class="calendar-wrapper">
+        <calendar
+            year="{{year}}"
+            month="{{month}}"
+            weeks-type="full-en"
+            cell-size="30"
+            show-more-days="{{true}}"
+            calendar-style="calendar"
+            header-style="calendar-header"
+            board-style="calendar-board"
+            days-color="{{daysColorList}}"
+            bindnextMonth="onMonthChange"
+            bindprevMonth="onMonthChange"
+            binddataChange="onMonthChange"
+        />
+    </view>
+    <view class="spin-wrapper" hidden="{{!loading}}" >
+        <i-spin size="large"></i-spin>
+    </view>
+    <check-point-card
+        wx:for="{{checkPointList}}"
+        wx:key="key"
+        bind:clickBody="onClickCardBody"
+        bind:clickCheckbox="onClickCardCheckbox"
+        checkPointId="{{item.checkPointId}}"
+        title="{{item.title}}" details="{{item.details}}"
+        ddl="{{item.ddl}}" 
+        urgencyColor="{{item.urgencyColor}}" initIsFinish="{{item.isFinish}}"
+        canChangeFinish="{{false}}"
+    />
+</view>

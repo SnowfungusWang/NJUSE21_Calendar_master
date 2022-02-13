@@ -1,0 +1,32 @@
+.calendar-wrapper {
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.calendar {
+    background-color: #EDE7DC;
+    padding-top: 10px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-bottom: 6px;
+    border-radius: 10px;
+    border: 1rpx solid #958561;
+}
+
+.calendar-header {
+    font-size: large;
+    color: #7b5d46;
+}
+
+.calendar-board {
+    color: #958561;
+    font-weight: bold;
+}
+
+.spin-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
