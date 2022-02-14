@@ -107,16 +107,15 @@ Page({
       },
       success: res => {
         console.log('yes', res)
-        // wx.switchTab({
-        //   url: '../todo/index',
-        // })
-        wx.navigateTo({
+        wx.switchTab({
           url: '../todo/index',
         })
+        // wx.navigateTo({
+        //   url: '../todo/index',
+        // })
       },
       fail: err => {
-        console.log("????")
-        console.error
+        console.log(err)
       }
     })
   },
