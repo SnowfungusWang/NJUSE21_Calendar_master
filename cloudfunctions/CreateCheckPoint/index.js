@@ -9,6 +9,7 @@ const db = cloud.database()
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   try {
+    console.log("add进入存储阶段")
     let id = await db.collection('checkpoints').add({
       // data 字段表示需新增的 JSON 数据
       data: {
@@ -36,6 +37,7 @@ exports.main = async (event, context) => {
       }
     }
   } catch (e) {
+    console.log("add进入存储阶段，存储失败")
     console.log(e)
   }
 }
