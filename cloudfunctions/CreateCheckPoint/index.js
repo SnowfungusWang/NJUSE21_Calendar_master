@@ -33,7 +33,8 @@ exports.main = async (event, context) => {
         participateTeamId: event.participateTeamId,
         ddl: new Date(event.ddl),
         isFinish: false,
-        urgency: event.urgency
+        urgency: event.urgency,
+        userId: wxContext.OPENID
       }
     }
   } catch (e) {
