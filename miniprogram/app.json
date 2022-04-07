@@ -2,7 +2,8 @@
   "pages": [
     "pages/todo/index", 
     "pages/add/add",
-    "pages/document/document"
+    "pages/document/document",
+    "pages/details/details"
   ],
   "window": {
     "backgroundColor": "#83B8E9",
