@@ -22,14 +22,23 @@ textarea{
   height: 100rpx;
 }
 
+.add_icon {
+  display: flex;
+  align-items: center;
+  border-radius: 10rpx;
+  font-size: 36rpx;
+  margin: 20rpx 30rpx ;
+  height: 100rpx;
+}
+
 .new-todo{
   flex: 1;
-border: 1rpx solid #7d6c46;
-box-shadow: 0 0 5rpx #7d6c46;
-font-size: 28rpx;
-padding: 15rpx;
-
+  border: 1rpx solid #7d6c46;
+  box-shadow: 0 0 5rpx #7d6c46;
+  font-size: 28rpx;
+  padding: 15rpx;
 }
+
 .radio-group{
   flex: 1;
   font-size: 28rpx;

@@ -39,3 +39,4 @@
     <button form-type="submit" class='add_submit' >修改</button>
   </form>
   <button class='add_submit1' bindtap='deleteCheck'>删除</button>
+

@@ -28,6 +28,11 @@
   </view>
 </view>
 
+<view class="add_icon">
+  <image src="../../assets/app/21女性角色.svg" mode="scaleToFill" style="height: 50rpx; width: 83rpx; display: block; box-sizing: border-box"></image>
+  <input class="new-todo" value="{{ title }}" placeholder="加个DDL吧～" auto-focus bindinput="inputChangeHandle" bindconfirm="addTitleHandle" />
+</view>
+
 
 <form bindsubmit="bindFormSubmit">
   <view class='add_alert'>
