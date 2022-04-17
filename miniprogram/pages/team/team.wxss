@@ -1,0 +1,22 @@
+/* miniprogram/pages/team/team.wxss */
+
+.teamInfo{
+    width: 100%;
+    height: 90%;
+    padding: 5rpx;
+}
+
+.vertical{
+    padding-top: 10px;
+    width: 100%;
+    height: 90%;
+}
+
+.organizer,.participant{
+  display: inline-block;
+  margin-left: 10rpx;
+  color: rgb(129, 198, 238);
+}
+/* .participant{
+  margin-top: 10rpx;
+} */

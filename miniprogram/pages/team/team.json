@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "i-card": "../../components/TeamCard/TeamCard",
+    "i-button": "../../lib/iview/button/index"
+  }
+}
