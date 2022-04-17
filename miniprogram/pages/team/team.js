@@ -93,11 +93,11 @@ Page({
     /**
      * 监听team_card的事件
      */
-    //   myEventListener: function (e) {
-    //     wx.navigateTo({
-    //       url: '/pages/team/team_show/team_show?teamId='+e.detail.teamId
-    //     })
-    //   },
+      myEventListener: function (e) {
+        wx.navigateTo({
+          url: '/pages/team/team_show/team_show?teamId='+e.detail.teamId
+        })
+      },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
