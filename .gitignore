@@ -17,7 +17,12 @@ node_modules/
 project.config.json
 
 # lib
-# /miniprogram/lib
+/miniprogram/lib
+
+# cloudfunctions
+/cloudfunctions/*/node_modules
+/cloudfunctions/*/package.json
+/cloudfunctions/*/package-lock.json
 
 #counter
 /.VSCodeCounter
