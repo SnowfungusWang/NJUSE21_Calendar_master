@@ -27,7 +27,7 @@
     <view class="select_two" bindtap="mySelect_person" data-name="个人">个人</view>
   </view>
 </view>
-
+<!--  提交-->
 <form bindsubmit="bindFormSubmit">
   <view class='add_alert'>
     <textarea placeholder="请输入备注" name="fuck" value="{{textarea}}" bindblur='bindTextAreaBlur' focus='{{focus}}' />
