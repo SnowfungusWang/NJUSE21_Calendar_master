@@ -1,0 +1,17 @@
+/* miniprogram/pages/team/team_add/team_add.wxss */
+.add_title {
+  display: flex;
+  align-items: center;
+  border-radius: 10rpx;
+  font-size: 36rpx;
+  margin: 20rpx 30rpx ;
+  height: 100rpx;
+}
+.new-team{
+  flex: 1;
+border: 1rpx solid #2FA0CD;
+box-shadow: 0 0 5rpx #2FA0CD;
+font-size: 28rpx;
+padding: 15rpx;
+
+}
