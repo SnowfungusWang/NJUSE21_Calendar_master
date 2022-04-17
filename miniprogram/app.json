@@ -4,7 +4,8 @@
     "pages/add/add",
     "pages/document/document",
     "pages/details/details",
-    "pages/team/team"
+    "pages/team/team",
+    "pages/team/team_add/team_add"
   ],
   "window": {
     "backgroundColor": "#83B8E9",

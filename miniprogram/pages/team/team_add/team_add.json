@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "i-button": "../../../lib/iview/button/index",
+    "i-toast": "../../../lib/iview/toast/index"
+  }
+}
