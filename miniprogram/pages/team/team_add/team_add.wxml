@@ -1,9 +1,0 @@
-<!--miniprogram/pages/team/team_add/team_add.wxml-->
-<view class="add_title">
-  <text>团队名称：</text>
-  <input class="new-team" value="{{ name }}" 
-  placeholder="请输入不超过10个字符" 
-  auto-focus bindinput="inputChangeHandle" bindconfirm="addTitleHandle"/>
-</view>
-<i-button bind:click="createTeam" type="primary">确认</i-button>
-<i-toast id="toast" />
