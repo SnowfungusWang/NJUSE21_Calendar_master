@@ -1,0 +1,66 @@
+/* components/TeamCard.wxss */
+.i-card {
+    margin:0 16px;
+    font-size:14px;
+    overflow:hidden;
+    position:relative;
+    background:#fff;
+    border:1rpx solid #dddee1;
+    border-radius:5px
+}
+.i-card-full {
+    margin:0;
+    border-left:none;
+    border-right:none;
+    border-radius:0
+}
+.i-card-content {
+    display:flex;
+    flex-direction: row;
+    padding:6px 16px;
+    align-items:center
+}
+.i-card-content-image {
+    flex:1;
+    text-align:left
+}
+.i-card-content-thumb {
+    display:inline-block;
+    width:64px;
+    height:64px;
+    position:relative;
+    margin-left:auto;
+    margin-right:auto;
+    overflow:hidden;
+    background-size:cover;
+    vertical-align:middle;
+}
+.i-card-content-desc{
+  flex: 3;
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+}
+.i-card-content-desc-title{
+  flex: 1;
+
+}
+.i-card-content-desc-members{
+  flex: 1;
+}
+
+.teamName{
+  position: relative;
+  bottom: 8px;
+}
+.members{
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: 5px;
+  border: 0 solid #bc9f77;
+  border-radius: 100rpx;
+  background-color: #bc9f77;
+}

@@ -1,0 +1,17 @@
+<!--components/TeamCard.wxml-->
+<view class="i-class i-card {{ full ? 'i-card-full' : '' }}" bindtap='_onShow'>
+    <view class="i-class i-card-content">
+        <view class="i-card-content-image">
+            <image class="i-card-content-thumb" src="{{ thumb }}" mode="aspectFit" wx:if="{{ thumb }}" />
+        </view>
+        <view class='i-card-content-desc'>
+            <view class='i-card-content-desc-title'>
+                <text>{{'队名：'+'  '+teamName}}</text>
+            </view>
+            <view class='i-card-content-desc-members'>
+                <text class='teamName'>成员：</text>
+                <image wx:for="{{memberList}}" wx:key="{{userId}}" src="{{item.avaterUrl}}" class='members'></image>
+            </view>
+        </view>
+    </view>
+</view>
