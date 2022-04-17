@@ -3,7 +3,8 @@
     "pages/todo/index", 
     "pages/add/add",
     "pages/document/document",
-    "pages/details/details"
+    "pages/details/details",
+    "pages/team/team"
   ],
   "window": {
     "backgroundColor": "#83B8E9",
@@ -29,6 +30,12 @@
         "text": "记录",
         "iconPath": "assets/app/rili-2.png",
         "selectedIconPath": "assets/app/rili.png"
+      },
+      {
+        "pagePath": "pages/team/team",
+        "text": "协作",
+        "iconPath": "assets/app/tuanduii-2.png",
+        "selectedIconPath": "assets/app/tuanduii.png"
       }
     ]
   },

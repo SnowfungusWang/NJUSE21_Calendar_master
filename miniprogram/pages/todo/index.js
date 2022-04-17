@@ -41,11 +41,13 @@ Page({
         "endDate": endDate.format("yyyy-MM-dd") + " 23:59"
       },
       success: res => {
-        // console.log('cpList', res.result.data)
+        // console.log('cpList', res)
         let checkPointList = []
         res.result.data.forEach(cpObj => {
+            // TODO
           let ddlDate = new Date(cpObj.ddl)
-          ddlDate.setHours(ddlDate.getHours() - 8)
+        //   ddlDate.setHours(ddlDate.getHours() - 8)
+          ddlDate.setHours(ddlDate.getHours())
           // CheckPointCard数据
           checkPointList.push({
             checkPointId: cpObj._id,

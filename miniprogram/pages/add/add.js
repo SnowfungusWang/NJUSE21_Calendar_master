@@ -93,7 +93,7 @@ Page({
       textarea: this.data.textarea
     })
     console.log("???")
-    // console.log('111' + this.data.select.teamID)
+    console.log('111', this.data)
     //调用云函数
     wx.cloud.callFunction({
       name: 'CreateCheckPoint',
