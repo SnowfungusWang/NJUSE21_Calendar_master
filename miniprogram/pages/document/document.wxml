@@ -26,6 +26,7 @@
         checkPointId="{{item.checkPointId}}"
         title="{{item.title}}" details="{{item.details}}"
         ddl="{{item.ddl}}" 
+        teamName="{{item.teamName}}"
         urgencyColor="{{item.urgencyColor}}" initIsFinish="{{item.isFinish}}"
         canChangeFinish="{{false}}"
     />
