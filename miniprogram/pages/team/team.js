@@ -60,6 +60,7 @@ Page({
 
         teamList: [],
         hasUserInfo: false,
+        userId: "",
         userName: "",
         userIcon: "",
     },
@@ -68,27 +69,26 @@ Page({
             name: "GetUserInfo",
             data: {},
             success: res => {
+                console.log(res)
                 if (res.result.data.length === 0) {
                     try {
-                        wx.setStorageSync('hasUserInfo', true)
+                        wx.setStorageSync('hasUserInfo', false)
                     } catch (e) { }
                     finally {
-                        // wx.reLaunch({ url: "/pages/userCenter/userCenter" })
-                        this.init()
+                        wx.reLaunch({ url: "/pages/userCenter/userCenter" })
                     }
                 } else {
+                    const usr = res.result.data[0]
+                    this.setData({
+                        userId: usr.userId,
+                    })
                     this.init();
-
                 }
             },
             fail: err => {
-                console.log(err);
+                console.log("err", err);
             }
         })
-
-        // if (!this.data.hasUserInfo) {
-        //     wx.reLaunch({ url: "/pages/userCenter/userCenter" });
-        // }
     },
 
     init() {
@@ -97,6 +97,7 @@ Page({
             name: "GetTeamByUserId",
             data: {},
             success: (res) => {
+                console.log("teamList", res)
                 this.setData({
                     teamList: res?.result?.data || [],
                 });
@@ -111,6 +112,8 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        // this.checkNickName()
+
         this.login();
         var that = this;
         that.setData({
@@ -138,13 +141,14 @@ Page({
             name: "GetUserInfo",
             data: {},
             success: (res) => {
+                console.log("??", res)
                 this.setData({
                     userName: res.data[0].nickName,
                 });
                 return res;
             },
             fail: (err) => {
-                console.log(err);
+                console.log("incheck", err);
             },
         });
     },
