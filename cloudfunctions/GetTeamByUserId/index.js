@@ -9,7 +9,7 @@ exports.main = async (event, context) => {
   let cps;
   try {
     let teams = await db.collection('user_team').where({
-      userId:  event.userId
+      userId:  wxContext.OPENID
     }).get()
 
     console.log(teams)
