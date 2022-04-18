@@ -13,6 +13,7 @@
             bindnextMonth="onMonthChange"
             bindprevMonth="onMonthChange"
             binddataChange="onMonthChange"
+            binddayClick="onDayClick"
         />
     </view>
     <view class="spin-wrapper" hidden="{{!loading}}" >

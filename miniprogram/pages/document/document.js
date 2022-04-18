@@ -8,7 +8,6 @@ Page({
         loading: true
     },
     onShow: function (options) {
-        let that = this
         let today = new Date()
         // 重置ddl卡片显示
         this.setData({
@@ -21,7 +20,6 @@ Page({
         wx.cloud.callFunction({
             name: 'GetTeamByUserId',
             success: res => {
-                // console.log('myTeams', res, that.teamDict)
                 const teamMap = new Map()
                 res.result.data.forEach(v => {
                     teamMap.set(v._id, v.name)
@@ -40,8 +38,96 @@ Page({
             },
         })
     },
+
+    getDayColor(days, type) {
+        console.log(days)
+        let daysColorList = []
+        const curDay = new Date().getDate()
+        const curMonth = new Date().getMonth()
+        // if (curMonth === )
+        daysColorList.push({
+            month: 'current',
+            day: curDay,
+            color: '#EDE7DC',
+            background: '#7b5d46'
+        })
+
+        if (type === 'month') {
+            for (var key in days) {
+                if (new Date(key).getDate() !== curDay) {
+                    let bkColor = "#958561"
+                    let fontColor = "#fff"
+                    if (days[key].nb == 0) {
+                        bkColor = "#958561"
+                    }
+                    else if (days[key].gg != 0) {
+                        bkColor = "#333"
+                    }
+                    daysColorList.push({
+                        month: "current",
+                        day: new Date(key).getDate(),
+                        color: fontColor,
+                        background: bkColor
+                    })
+                }
+            }
+        } else {
+            daysColorList.push({
+                month: "current",
+                day: new Date(type).getDate(),
+                color: "#fff",
+                background: "#958561"
+            })
+        }
+        return daysColorList
+    },
+
+    processRes(ddlList, type) {
+        var checkPointList = []
+        var days = []
+        // 处理checkPointList
+        ddlList.forEach(cpObj => {
+            let ddlDate = new Date(cpObj.ddl)
+            // CheckPointCard数据
+            checkPointList.push({
+                checkPointId: cpObj._id,
+                title: cpObj.title,
+                details: cpObj.details,
+                ddl: ddlDate.format("yyyy.MM.dd hh:mm"),
+                teamName: this.teamMap.get(cpObj.participateTeamId),
+                isFinish: cpObj.isFinish,
+                urgencyColor: this.getUrgencyColor(cpObj.urgency)
+            })
+            // 统计CheckPoint完成情况(按日)
+            let cpDateStr = ddlDate.format("yyyy-MM-dd")
+            if (days[cpDateStr] == null)
+                days[cpDateStr] = { nb: 0, gg: 0 }
+            if (cpObj.isFinish)
+                days[cpDateStr].nb++
+            else
+                days[cpDateStr].gg++
+        });
+        // 按照时间排序
+        let timeRankFunc = (a, b) => {
+            let aDate = new Date(a.ddl)
+            let bDate = new Date(b.ddl)
+            if (aDate < bDate)
+                return -1
+            return 1
+        }
+        checkPointList.sort(timeRankFunc)
+
+        // 决定日历中Day的颜色
+        var daysColorList = this.getDayColor(days, type)
+        this.setData({
+            checkPointList,
+            loading: false,
+            daysColorList
+        })
+
+    },
+
     onMonthChange(event) {
-        let that = this
         // 重置ddl卡片显示
         this.setData({
             daysColorList: [],
@@ -63,72 +149,14 @@ Page({
                 "endDate": endDate.format("yyyy-MM-dd") + " 00:00"
             },
             success: res => {
-                var checkPointList = []
-                var days = []
-                // 处理checkPointList
-                res.result.data.forEach(cpObj => {
-                    let ddlDate = new Date(cpObj.ddl)
-                    ddlDate.setHours(ddlDate.getHours() - 8)
-                    // CheckPointCard数据
-                    checkPointList.push({
-                        checkPointId: cpObj._id,
-                        title: cpObj.title,
-                        details: cpObj.details,
-                        ddl: ddlDate.format("yyyy.MM.dd hh:mm"),
-                        teamName: that.teamMap.get(cpObj.participateTeamId),
-                        isFinish: cpObj.isFinish,
-                        urgencyColor: that.getUrgencyColor(cpObj.urgency)
-                    })
-                    // 统计CheckPoint完成情况(按日)
-                    let cpDateStr = ddlDate.format("yyyy-MM-dd")
-                    if (days[cpDateStr] == null)
-                        days[cpDateStr] = { nb: 0, gg: 0 }
-                    if (cpObj.isFinish)
-                        days[cpDateStr].nb++
-                    else
-                        days[cpDateStr].gg++
-                });
-                // 按照时间排序
-                let timeRankFunc = (a, b) => {
-                    let aDate = new Date(a.ddl)
-                    let bDate = new Date(b.ddl)
-                    if (aDate < bDate)
-                        return -1
-                    return 1
-                }
-                checkPointList.sort(timeRankFunc)
-                // console.log("days", days)
-                // 决定日历中Day的颜色
-                var daysColorList = []
-                for (var key in days) {
-                    let bkColor = "#958561"
-                    let fontColor = "#fff"
-                    if (days[key].nb == 0) {
-                        bkColor = "#958561"
-                    }
-                    else if (days[key].gg != 0) {
-                        bkColor = "#333"
-                    }
-                    daysColorList.push({
-                        month: "current",
-                        day: new Date(key).getDate(),
-                        color: fontColor,
-                        background: bkColor
-                    })
-                }
-                // console.log("days", days)
-                // console.log ("daysColor", daysColorList)
-                this.setData({
-                    checkPointList,
-                    loading: false,
-                    daysColorList
-                })
+                this.processRes(res.result.data, 'month')
             },
             fail: err => {
                 console.error
             },
         })
     },
+
     onClickCardCheckbox(event) {
         console.log(event)
     },
@@ -151,5 +179,35 @@ Page({
                 return "grey"
         }
         return "grey"
+    },
+
+    onDayClick(event) {
+        // loading
+        this.setData({
+            daysColorList: [],
+            checkPointList: [],
+            loading: true
+        })
+
+        // get data
+        const { detail } = event
+        const { year, month, day } = detail
+        const dayStr = year + '-' + (month - 9 > 0 ? "" : 0) + month + '-' + (day - 9 > 0 ? '' : '0') + day;
+
+        wx.cloud.callFunction({
+            name: 'GetCheckPointByUserIdAndDateRange',
+            data: {
+                "beginDate": dayStr + " 00:00",
+                "endDate": dayStr + " 23:59"
+            },
+            success: res => {
+                console.log('cpList', res)
+                this.processRes(res.result.data, dayStr)
+            },
+            fail: err => {
+                console.error
+            },
+        })
+
     }
 })
