@@ -94,7 +94,6 @@ Page({
         console.log(err);
       },
     });
-    console.log("test set");
     wx.cloud.callFunction({
       name: "SetUserInfo",
       data: {
