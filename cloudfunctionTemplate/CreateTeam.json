@@ -1,0 +1,8 @@
+[
+    {
+        "name": "CreateTeam",
+        "value": {
+            "name": "TeamName"
+        }
+    }
+]
