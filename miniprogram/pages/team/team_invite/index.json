@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "i-modal": "../../../lib/iview/modal/index",
+    "i-message": "../../../lib/iview/message/index"
+  }
+}
