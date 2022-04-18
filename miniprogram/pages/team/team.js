@@ -46,7 +46,8 @@ Page({
                 role: 'captain'
             }]
         }],
-
+        userName: '',
+        userIcon: '',
         teamList: []
     },
 
@@ -89,6 +90,20 @@ Page({
                 console.log(err)
             }
         })
+        console.log("test set")
+        wx.cloud.callFunction({
+            name: 'SetUserInfo',
+            data: {
+                "name": "whale",
+                "icon": "mmm"
+        },
+            success: res => {
+                console.log(res)
+            },
+            fail: err => {
+                console.log(err)
+            }
+        })
     },
 
     /**
@@ -97,6 +112,47 @@ Page({
     myEventListener: function (e) {
         wx.navigateTo({
             url: '/pages/team/team_show/team_show?teamId=' + e.detail.teamId
+        })
+    },
+
+    /**
+     * 初次访问协作页面，检查nickname
+     */ 
+    checkNickName: function(){
+        wx.cloud.callFunction({
+            name: 'GetUserInfo',
+            data: {},
+            success: res => {
+                this.setData({
+                    userName: res.data[0].nickName
+                })
+                return res
+            },
+            fail: err => {
+                console.log(err)
+            }
+        })
+    },
+
+        /**
+     * 初次访问协作页面，设置nickname
+     */ 
+    setNickName: function(nickName, icon){
+        wx.cloud.callFunction({
+            name: 'SetUserInfo',
+            data: {
+                "name": nickName,
+                "icon": icon
+        },
+            success: res => {
+                this.setData({
+                    userName: nickName,
+                    userIcon: icon
+                })
+            },
+            fail: err => {
+                console.log(err)
+            }
         })
     },
 
