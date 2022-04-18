@@ -5,7 +5,8 @@
     "pages/document/document",
     "pages/details/details",
     "pages/team/team",
-    "pages/team/team_add/team_add"
+    "pages/team/team_add/team_add",
+    "pages/team/team_show/team_show"
   ],
   "window": {
     "backgroundColor": "#83B8E9",

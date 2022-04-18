@@ -1,0 +1,23 @@
+/* miniprogram/pages/team/team_show/team_show.wxss */
+.teamLogo{
+  display: block;
+  margin: 0 auto 0 auto;
+}
+.content{
+  padding: 15px 15px 15px 30px;
+  
+}
+.content-title{
+  display: inline-block;
+  margin-right: 40px;
+}
+.content-image{
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  border: 0 solid #bc9f77;
+  border-radius: 100rpx;
+  background-color: #bc9f77;
+  position: relative;
+  top: 5px;
+}
