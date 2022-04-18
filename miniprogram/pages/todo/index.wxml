@@ -1,86 +1,73 @@
-
-    <!-- endDate时间选择器 -->
-      <view class='decoration'>
-        <view class='date_area'>
-          <picker mode="date" value="{{endDate}}" bindchange="bindDateChange">
+<!-- endDate时间选择器 -->
+<view class='decoration'>
+    <view class='date_area'>
+        <picker mode="date" value="{{endDate}}" bindchange="bindDateChange">
             <view class="date_picker">今天 - {{endDateString}}</view>
-          </picker>
-        </view>
-      </view>
+        </picker>
+    </view>
+</view>
 
-      <!-- 团队选择下拉框 -->
-      <view class='state' bindtap='bindShowMsg'>
-        <image style='height:55rpx;width:55rpx;margin-top:10rpx;' src="../../assets/app/tuanduii.png"></image>
-        <text> 个人 / 团队：{{teamNameSelected}}</text>
-      </view>
+<!-- 团队选择下拉框 -->
+<view class='state' bindtap='bindShowMsg'>
+    <image style='height:55rpx;width:55rpx;margin-top:10rpx;' src="../../assets/app/tuanduii.png"></image>
+    <text> 个人 / 团队：{{teamNameSelected}}</text>
+</view>
 
-      <!-- 下拉列表 -->
-      <view class="select_box" wx:if="{{stateisSelect}}">
-        <view class="select_one" bindtap="mySelect" data-teamid="all" data-teamname="全部">全部</view>
-        <view class="select_one" bindtap="mySelect" data-teamid="" data-teamname="个人">个人</view>
-        <view class="select_one" wx:for="{{teamList}}" bindtap="mySelect" data-teamid="{{item.teamId}}" data-teamname="{{item.teamName}}">
-          {{item.teamName}}
-        </view>
-      </view>
+<!-- 下拉列表 -->
+<view class="select_box" wx:if="{{stateisSelect}}">
+    <view class="select_one" bindtap="mySelect" data-teamid="all" data-teamname="全部">全部</view>
+    <view class="select_one" bindtap="mySelect" data-teamid="" data-teamname="个人">个人</view>
+    <view class="select_one" wx:for="{{teamList}}" bindtap="mySelect" data-teamid="{{item.teamId}}" data-teamname="{{item.teamName}}">
+        {{item.teamName}}
+    </view>
+</view>
 
-          <!-- 排序下拉框 -->
-      <view class='rank' bindtap='bindShowMsg_rank'>
-        <image style='height:50rpx;width:50rpx;margin-top:15rpx;' src='../../images/todo/fenzu.png'></image>
-        <text> 排序类型：{{rank}}</text>
-      </view>
-      <!-- 按时间排序 -->
-      <view class="select_box" wx:if="{{rankisSelect}}">
-        <view class="select_one" bindtap="rankSelect" data-ranktype="time">时间排序</view>
-        <view class="select_one" bindtap="rankSelect" data-ranktype="urgency">重要排序</view>
-        <view class="select_two" bindtap="rankSelect" data-ranktype="mix">综合排序</view>
-      </view>
+<!-- 排序下拉框 -->
+<view class='rank' bindtap='bindShowMsg_rank'>
+    <image style='height:50rpx;width:50rpx;margin-top:15rpx;' src='../../images/todo/fenzu.png'></image>
+    <text> 排序类型：{{rank}}</text>
+</view>
+<!-- 按时间排序 -->
+<view class="select_box" wx:if="{{rankisSelect}}">
+    <view class="select_one" bindtap="rankSelect" data-ranktype="time">时间排序</view>
+    <view class="select_one" bindtap="rankSelect" data-ranktype="urgency">重要排序</view>
+    <view class="select_two" bindtap="rankSelect" data-ranktype="mix">综合排序</view>
+</view>
 
 
 <view class='ddl'>
-  <i-row>
-    <i-col span="7" i-class="count">
-      <text>{{checkPointList.length-leftCount}} / {{checkPointList.length}}</text>
-    </i-col>
-    <i-col span="15" i-class="latest_ddl">
-      <text class="type-title">当前最紧迫的DDL：</text>
-      <i-count-down target="{{targetTime}}" wx:if="{{targetTime !== -1}}" clear-timer="{{clearTimer}}"></i-count-down>
+    <i-row>
+        <i-col span="7" i-class="count">
+            <text>{{checkPointList.length-leftCount}} / {{checkPointList.length}}</text>
+        </i-col>
+        <i-col span="15" i-class="latest_ddl">
+            <text class="type-title">当前最紧迫的DDL：</text>
+            <i-count-down target="{{targetTime}}" wx:if="{{targetTime !== -1}}" clear-timer="{{clearTimer}}" bindcallback="refreshPage"></i-count-down>
       <view wx:else>无</view>
     </i-col>
   </i-row>
 </view>
-<view class="container">
-  <block wx:if="{{ checkPointList.length }}">
-    <view class="checkPointList">
-      <check-point-card
-        view wx:for="{{checkPointList}}"
-        wx:key="_id"
-        checkPointId="{{item.checkPointId}}"
-        title="{{item.title}}"
-        details="{{item.details}}"
-        ddl="{{item.ddl}}"
-        teamName="{{item.teamName}}"
-        initIsFinish="{{item.isFinish}}"
-        urgencyColor="{{item.urgencyColor}}"
-        bind:clickBody='checkDetail'
-        bind:clickCheckbox='_onChangeCheckPointFinish'
-        />
-    </view>
-    <view class="footer">
-      <text wx:if="{{ leftCount }}">{{ leftCount }} {{ leftCount === 1 ? '个事项' : '个事项' }} 未完成</text>
-    </view>
-  </block>
-  <block wx:else>
-    <view class="empty">
-      <text class="title">Congratulations!</text>
-      <text class="content">已完成全部事项</text>
-    </view>
-  </block>
+<view class=" container">
+                <block wx:if="{{ checkPointList.length }}">
+                    <view class="checkPointList">
+                        <check-point-card view wx:for="{{checkPointList}}" wx:key="_id" checkPointId="{{item.checkPointId}}" title="{{item.title}}" details="{{item.details}}" ddl="{{item.ddl}}" teamName="{{item.teamName}}" initIsFinish="{{item.isFinish}}" urgencyColor="{{item.urgencyColor}}" bind:clickBody='checkDetail' bind:clickCheckbox='_onChangeCheckPointFinish' />
+                    </view>
+                    <view class="footer">
+                        <text wx:if="{{ leftCount }}">{{ leftCount }} {{ leftCount === 1 ? '个事项' : '个事项' }} 未完成</text>
+                    </view>
+                </block>
+                <block wx:else>
+                    <view class="empty">
+                        <text class="title">Congratulations!</text>
+                        <text class="content">已完成全部事项</text>
+                    </view>
+                </block>
 </view>
 <!-- movable-area 范围设置全屏，导致下发页面不能触发点击事件。movable-area 的style设置pointer-events: none movableview的样式设置。pointer-events: auto， -->
 <movable-area style="pointer-events: none;height: 100%;width: 100%;       position:fixed;right:10px;bottom:10px;">
-  <movable-view direction="all" style="pointer-events: auto;height: 50px;width: 50px; position:relative;left:85%;top:90%;">
-    <navigator url="/pages/add/add?title=add">
-      <image src="../../images/todo/tianjia.png" style="height: 60px;width: 60px;"></image>
-    </navigator>
-  </movable-view>
+    <movable-view direction="all" style="pointer-events: auto;height: 50px;width: 50px; position:relative;left:85%;top:90%;">
+        <navigator url="/pages/add/add?title=add">
+            <image src="../../images/todo/tianjia.png" style="height: 60px;width: 60px;"></image>
+        </navigator>
+    </movable-view>
 </movable-area>

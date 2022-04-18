@@ -70,58 +70,6 @@ Page({
       }
     })
   },
-
-  // 删除团队
-  remove: function(){
-    this.setData({
-      visible: true
-    });
-  },
-
-  // 确认删除
-  confirmRemove: function( { detail } ){
-    var that = this;
-    if (detail.index === 0) {
-      this.setData({
-        visible: false
-      });
-    } else {
-      const action = [...this.data.actions];
-      action[1].loading = true;
-
-      this.setData({
-        actions: action
-      });
-      // 执行删除操作
-      wx.cloud.callFunction({
-        name: 'DeleteTeamById',
-        data: {
-          teamId: that.data.teamId
-        },
-        success: res => {
-          // 停止加载样式
-          action[1].loading = false;
-          that.setData({
-            visible: false,
-            actions: action
-          });
-          $Message({
-            content: '删除成功！',
-            type: 'success'
-          });
-          setTimeout(() => {
-            wx.switchTab({
-              url: '/pages/team/team'
-            })
-          }, 1000);
-        },
-        fail: err => {
-          console.log(err);
-        }
-      })
-    }
-  },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -163,21 +111,4 @@ Page({
   onReachBottom: function () {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-    return {
-      title: this.data.teamTitle+'邀请您的加入',
-      path: '/pages/team/team_invite/index?teamId='+this.data.teamId,
-      // imageUrl: '这个是显示的图片，不写就默认当前页面的截图',
-      success: function (shareTickets) {
-        console.info(shareTickets + '成功');
-      },
-      fail: function (res) {
-        console.log(res + '失败');
-      },
-    }
-  }
 })

@@ -81,8 +81,6 @@ Page({
             name: 'GetTeamByUserId',
             data: {},
             success: res => {
-                // console.log("?", res)
-
                 this.setData({
                     teamList: res?.result?.data || []
                 })

@@ -15,7 +15,8 @@ Page({
         rankSelect: 'time',
         endDate: new Date(),
         endDateString: new Date().format("yyyy-MM-dd"),
-        trueddl: []
+        trueddl: [],
+        refresh: false
     },
     onLoad: function () {
         this.rankType = "time"
@@ -88,10 +89,11 @@ Page({
             });
         }
         let targetTime = nearDate === '' ? -1 : nearDate.getTime()
-        this.setData({
-            targetTime: targetTime,
-            clearTimer: false
-        })
+        // this.setData({
+        //     targetTime: targetTime,
+        //     clearTimer: false
+        // })
+        return targetTime
     },
 
     // 刷新页面
@@ -141,13 +143,16 @@ Page({
                 checkPointList.sort(mixRankFunc)
                 break
         }
+
+        let targetTime = this.countNearTime(checkPointList)
+
         this.setData({
             checkPointList,
             leftCount,
+            targetTime: targetTime,
+            refresh: !this.data.refresh
             // clearTimer: false
         })
-        this.countNearTime(checkPointList)
-
     },
 
 
