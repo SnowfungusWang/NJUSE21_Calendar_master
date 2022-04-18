@@ -73,7 +73,7 @@ Page({
 
   //类型
   changeColor: function (e) {
-    console.log(this.data.items[0].name)
+    // console.log(this.data.items[0].name)
     // var name='0'
 
   },
@@ -92,8 +92,8 @@ Page({
       focus: 'false',
       textarea: this.data.textarea
     })
-    console.log("???")
-    console.log('111', this.data)
+    // console.log("???")
+    // console.log('111', this.data)
     //调用云函数
     wx.cloud.callFunction({
       name: 'CreateCheckPoint',
@@ -106,7 +106,7 @@ Page({
         urgency: this.data.urgency
       },
       success: res => {
-        console.log('yes', res)
+        // console.log('yes', res)
         wx.switchTab({
           url: '../todo/index',
         })

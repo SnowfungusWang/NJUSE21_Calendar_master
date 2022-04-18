@@ -43,7 +43,8 @@
     </i-col>
     <i-col span="15" i-class="latest_ddl">
       <text class="type-title">当前最紧迫的DDL：</text>
-      <i-count-down target="{{targetTime}}" clear-timer="{{clearTimer}}"></i-count-down>
+      <i-count-down target="{{targetTime}}" wx:if="{{targetTime !== -1}}" clear-timer="{{clearTimer}}"></i-count-down>
+      <view wx:else>无</view>
     </i-col>
   </i-row>
 </view>

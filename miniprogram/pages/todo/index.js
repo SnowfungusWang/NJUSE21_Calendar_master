@@ -87,14 +87,16 @@ Page({
                 }
             });
         }
-        let targetTime = nearDate === '' ? 0 : nearDate.getTime()
+        let targetTime = nearDate === '' ? -1 : nearDate.getTime()
         this.setData({
-            targetTime: targetTime
+            targetTime: targetTime,
+            clearTimer: false
         })
     },
 
-    // 刷新页面, 根据
+    // 刷新页面
     refreshPage() {
+        console.log("refresh")
         let checkPointList = []
         let leftCount = 0
         // 展示显示的list，计算完成数 
@@ -139,12 +141,13 @@ Page({
                 checkPointList.sort(mixRankFunc)
                 break
         }
-        this.countNearTime(checkPointList)
         this.setData({
             checkPointList,
             leftCount,
-            clearTimer: false
+            // clearTimer: false
         })
+        this.countNearTime(checkPointList)
+
     },
 
 
