@@ -61,43 +61,45 @@ Page({
         wx.setNavigationBarTitle({
             title: that.data.pageTitle//设置页面标题
         })
-        console.log(this.data.teams)
-        let l = this.data.teams.map(v => {
-            return {
-                teamId: v.teamId,
-                _id: 'a',
-                name: v.teamName,
-                memberList: v.teamMembers
+        // console.log(this.data.teams)
+        // let l = this.data.teams.map(v => {
+        //     return {
+        //         teamId: v.teamId,
+        //         _id: 'a',
+        //         name: v.teamName,
+        //         memberList: v.teamMembers
+        //     }
+        // })
+        // that.setData({
+        //     teamList: l
+        // })
+        // console.log(l)
+
+        // 初始化拉取信息
+        wx.cloud.callFunction({
+            name: 'GetTeamByUserId',
+            data: {},
+            success: res => {
+                console.log("?", res)
+
+                this.setData({
+                    teamList: res?.result?.data || []
+                })
+            },
+            fail: err => {
+                console.log(err)
             }
         })
-        that.setData({
-            teamList: l
-        })
-        console.log(l)
-
-        // // 初始化拉取信息
-        // wx.cloud.callFunction({
-        //   name: 'GetTeamByUserId',
-        //   data:{},
-        //   success: res => {
-        //     this.setData({
-        //       teamList: res.result.data
-        //     })
-        //   },
-        //   fail: err => {
-        //     console.log(err)
-        //   }
-        // })
     },
 
     /**
      * 监听team_card的事件
      */
-      myEventListener: function (e) {
+    myEventListener: function (e) {
         wx.navigateTo({
-          url: '/pages/team/team_show/team_show?teamId='+e.detail.teamId
+            url: '/pages/team/team_show/team_show?teamId=' + e.detail.teamId
         })
-      },
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
