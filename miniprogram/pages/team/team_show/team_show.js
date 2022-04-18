@@ -70,6 +70,58 @@ Page({
       }
     })
   },
+
+  // 删除团队
+  remove: function(){
+    this.setData({
+      visible: true
+    });
+  },
+
+  // 确认删除
+  confirmRemove: function( { detail } ){
+    var that = this;
+    if (detail.index === 0) {
+      this.setData({
+        visible: false
+      });
+    } else {
+      const action = [...this.data.actions];
+      action[1].loading = true;
+
+      this.setData({
+        actions: action
+      });
+      // 执行删除操作
+      wx.cloud.callFunction({
+        name: 'DeleteTeamById',
+        data: {
+          teamId: that.data.teamId
+        },
+        success: res => {
+          // 停止加载样式
+          action[1].loading = false;
+          that.setData({
+            visible: false,
+            actions: action
+          });
+          $Message({
+            content: '删除成功！',
+            type: 'success'
+          });
+          setTimeout(() => {
+            wx.switchTab({
+              url: '/pages/team/team'
+            })
+          }, 1000);
+        },
+        fail: err => {
+          console.log(err);
+        }
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -111,4 +163,5 @@ Page({
   onReachBottom: function () {
 
   },
+
 })
