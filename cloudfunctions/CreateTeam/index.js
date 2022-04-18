@@ -27,7 +27,7 @@ exports.main = async (event, context) => {
     }).get()
 
     if(user_team.data.length !== 0){
-      await db.collection('user_team').doc(user_team.data._id).update({
+      await db.collection('user_team').doc(user_team.data.teams).update({
         data: {
           teams: _.push(id._id)
         }
