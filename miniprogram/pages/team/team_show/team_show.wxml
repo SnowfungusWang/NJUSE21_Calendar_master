@@ -1,27 +1,25 @@
 <!--miniprogram/pages/team/team_show/team_show.wxml-->
 <view class='main-container'>
-  <image src='https://i.loli.net/2017/08/21/599a521472424.jpg' class='teamLogo'></image>
-  <i-panel title="团队名称">
-    <view class='content'>{{teamTitle}}</view>
-  </i-panel>
-  <i-panel title="创 建 者">
-    <view class='content'>{{creatorName}}</view>
-  </i-panel>
-  <i-panel title="创建时间">
-    <view class='content'>{{createTime}}</view>
-  </i-panel>
-  <i-panel title="团队成员">
-      <block 
-        wx:for='{{members}}'
-        wx:key='{{nickName}}'>
-        <view class='content'>
-            <text class="content-title">{{item.nickName}}</text>
-            <image src='{{item.avaterUrl}}' class='content-image'></image>
-        </view>
-      </block>
-  </i-panel>
-  <i-button type="success" disabled='{{disable_invite}}'>邀请成员</i-button>
-  <i-button bind:click="remove" type="warning" disabled='{{disable_del}}'>解散团队</i-button>
+    <image src='https://i.loli.net/2017/08/21/599a521472424.jpg' class='teamLogo'></image>
+    <i-panel title="团队名称">
+        <view class='content'>{{teamTitle}}</view>
+    </i-panel>
+    <i-panel title="创 建 者">
+        <view class='content'>{{creatorName}}</view>
+    </i-panel>
+    <i-panel title="创建时间">
+        <view class='content'>{{createTime}}</view>
+    </i-panel>
+    <i-panel title="团队成员">
+        <block wx:for='{{members}}' wx:key='{{nickName}}'>
+            <view class='content'>
+                <text class="content-title">{{item.nickName}}</text>
+                <image src='{{item.avaterUrl}}' class='content-image'></image>
+            </view>
+        </block>
+    </i-panel>
+    <i-button type="success" open-type='share' disabled='{{disable_invite}}'>邀请成员</i-button>
+    <i-button bind:click="remove" type="warning" disabled='{{disable_del}}'>解散团队</i-button>
 </view>
 
 <i-modal title="删除确认" visible="{{ visible }}" actions="{{ actions }}" bind:click="confirmRemove">

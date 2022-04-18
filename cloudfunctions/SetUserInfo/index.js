@@ -8,14 +8,27 @@ const _ = db.command
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   try {
-    await db.collection('users').where({
-      userId: wxContext.OPENID
-    }).update({
-      data: {
-        nickName: event.name,
-        userIcon: event.icon
+    let userInfo = await db.collection('users').where({userId: wxContext.OPENID}).get()
+    if (userInfo.data.length == 0){
+      await db.collection('users').add({
+        // data 字段表示需新增的 JSON 数据
+        data: {
+          userId: wxContext.OPENID,
+          nickName: event.name,
+          userIcon: event.icon,
+          createTime: new Date()
+        }
+      })
+    } else {
+      await db.collection('users').where({
+        userId: wxContext.OPENID
+      }).update({
+        data: {
+          nickName: event.name,
+          userIcon: event.icon
+        }
+      })
     }
-    })
     return await db.collection('users').where({userId: wxContext.OPENID}).get()
   } catch (e) {
     console.log(e)

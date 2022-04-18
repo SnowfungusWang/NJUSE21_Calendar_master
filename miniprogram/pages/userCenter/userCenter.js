@@ -88,8 +88,23 @@ Page({
     },
     handleSetting() {
         console.log(this.data.nickName)
-        wx.switchTab({
-          url: '/pages/team/team',
+        wx.cloud.callFunction({
+            name: "SetUserInfo",
+            data: {
+                name: this.data.nickName,
+                icon: this.data.userInfo.avatarUrl
+            },
+            success: res => {
+                console.log("save", res)
+                wx.switchTab({
+                    url: '/pages/team/team',
+                })
+            },
+            fail: err => {
+                console.log(err)
+            }
+
         })
+
     }
 })
