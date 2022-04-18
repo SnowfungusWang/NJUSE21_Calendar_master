@@ -12,7 +12,7 @@ exports.main = async (event, context) => {
       userId:  wxContext.OPENID
     }).get()
 
-    console.log(teams)
+    console.log("teams", teams)
     
     if (teams.data.length == 0) return { data: [], errMsg: "用户未在任何一个团队中" }
     let allteams = await db.collection('teams').where({
