@@ -1,0 +1,8 @@
+[
+  {
+    "name": "DeleteTeamById",
+    "value": {
+      "teamId": "xx"
+    }
+  }
+]
