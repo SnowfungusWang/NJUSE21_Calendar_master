@@ -1,51 +1,51 @@
 {
-  "pages": [
-    "pages/todo/index", 
-    "pages/add/add",
-    "pages/document/document",
-    "pages/details/details",
-    "pages/team/team",
-    "pages/team/team_add/team_add",
-    "pages/team/team_show/team_show"
-  ],
-  "window": {
-    "backgroundColor": "#83B8E9",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#bc9f77",
-    "navigationBarTitleText": "DDL KILLER",
-    "navigationBarTextStyle": "white"
-  },
-  "tabBar": {
-    "color": "#999",
-    "selectedColor": "#111",
-    "backgroundColor": "#f8f9fb",
-    "borderStyle": "white",
-    "list": [
-      {
-        "pagePath": "pages/todo/index",
-        "text": "DDLs",
-        "iconPath": "assets/app/todo-2.png",
-        "selectedIconPath": "assets/app/todo.png"
-      },
-      {
-        "pagePath": "pages/document/document",
-        "text": "记录",
-        "iconPath": "assets/app/rili-2.png",
-        "selectedIconPath": "assets/app/rili.png"
-      },
-      {
-        "pagePath": "pages/team/team",
-        "text": "协作",
-        "iconPath": "assets/app/tuanduii-2.png",
-        "selectedIconPath": "assets/app/tuanduii.png"
-      }
-    ]
-  },
-  "sitemapLocation": "sitemap.json",
-  "plugins": {
-    "calendar": {
-      "version": "1.1.3",
-      "provider": "wx92c68dae5a8bb046"
+    "pages": [
+        "pages/todo/index",
+        "pages/add/add",
+        "pages/document/document",
+        "pages/details/details",
+        "pages/userCenter/userCenter",
+        "pages/team/team",
+        "pages/team/team_add/team_add",
+        "pages/team/team_show/team_show"
+    ],
+    "window": {
+        "backgroundColor": "#83B8E9",
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#bc9f77",
+        "navigationBarTitleText": "DDL KILLER",
+        "navigationBarTextStyle": "white"
+    },
+    "tabBar": {
+        "color": "#999",
+        "selectedColor": "#111",
+        "backgroundColor": "#f8f9fb",
+        "borderStyle": "white",
+        "list": [{
+                "pagePath": "pages/todo/index",
+                "text": "DDLs",
+                "iconPath": "assets/app/todo-2.png",
+                "selectedIconPath": "assets/app/todo.png"
+            },
+            {
+                "pagePath": "pages/document/document",
+                "text": "记录",
+                "iconPath": "assets/app/rili-2.png",
+                "selectedIconPath": "assets/app/rili.png"
+            },
+            {
+                "pagePath": "pages/team/team",
+                "text": "协作",
+                "iconPath": "assets/app/tuanduii-2.png",
+                "selectedIconPath": "assets/app/tuanduii.png"
+            }
+        ]
+    },
+    "sitemapLocation": "sitemap.json",
+    "plugins": {
+        "calendar": {
+            "version": "1.1.3",
+            "provider": "wx92c68dae5a8bb046"
+        }
     }
-  }
 }

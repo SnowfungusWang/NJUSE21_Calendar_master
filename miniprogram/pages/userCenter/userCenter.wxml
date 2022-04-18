@@ -1,0 +1,14 @@
+<view>
+    <i-input value="{{ nickName }}" bind:blur="handleblur" maxlength="{{20}}" title="昵称" autofocus placeholder="您的昵称用于在队伍中显示" />
+    <block wx:if="{{!hasUserInfo}}">
+        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像 </button>
+        <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像 </button>
+    </block>
+    <block wx:else>
+        <i-panel title="头像">
+            <cover-image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover" style="width: 50%;margin: auto;"></cover-image>
+        </i-panel>
+        <button type="primary" bindtap="handleSetting" style="margin-top: 10%;">设置</button>
+    </block>
+
+</view>

@@ -47,13 +47,19 @@ Page({
             }]
         }],
 
-        teamList: []
+        teamList: [],
+        hasUserInfo: false
     },
-
+    login() {
+        if (!this.data.hasUserInfo) {
+            wx.reLaunch({ url: "/pages/userCenter/userCenter" })
+        }
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        this.login()
         var that = this;
         that.setData({
             pageTitle: "我的团队"//页面标题
@@ -61,20 +67,6 @@ Page({
         wx.setNavigationBarTitle({
             title: that.data.pageTitle//设置页面标题
         })
-        console.log("new")
-        // console.log(this.data.teams)
-        // let l = this.data.teams.map(v => {
-        //     return {
-        //         teamId: v.teamId,
-        //         _id: 'a',
-        //         name: v.teamName,
-        //         memberList: v.teamMembers
-        //     }
-        // })
-        // that.setData({
-        //     teamList: l
-        // })
-        // console.log(l)
 
         // 初始化拉取信息
         wx.cloud.callFunction({

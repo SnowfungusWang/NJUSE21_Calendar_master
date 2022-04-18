@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "i-input": "../../../lib/iview/input/index",
+        "i-radio-group": "../../../lib/iview/radio-group/index",
+        "i-radio": "../../../lib/iview/radio/index",
+        "i-panel": "../../../lib/iview/panel/index"
+    }
+}
