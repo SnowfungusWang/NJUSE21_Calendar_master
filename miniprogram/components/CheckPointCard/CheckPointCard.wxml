@@ -1,11 +1,11 @@
-<i-card title="{{title}}" extra="{{teamName}}" i-class="card">
+<i-card title="{{title}}" style="color: '#fff';" extra="{{teamName}}" i-class="card">
     <view catchtap="_clickBody" slot="content">
         <i-icon type="activity" size="28" color="{{urgencyColor}}" />
         {{details}}
     </view>
     <view slot="footer">
         <view class="footer-wrapper">
-            <text class='ddl'>{{ ddl }}</text>
+            <text class='ddl' style="color: {{isPastTime  ? '#ff0000' : ''}}">{{ ddl + (isPastTime ? '(已到期)' :'') }}</text>
             <icon catchtap="_clickCheckbox" class="checkbox" type="{{ isFinish ? 'success' : 'circle' }}" size="30" color="{{ isFinish ? '#bc9f77' : '#bc9f77' }}" />
         </view>
     </view>

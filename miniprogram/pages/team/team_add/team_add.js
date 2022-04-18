@@ -24,8 +24,20 @@ Page({
 
     createTeam: function () {
         console.log("team title", this.data.name)
-        wx.switchTab({
-            url: '/pages/team/team'
+        wx.cloud.callFunction({
+            name: 'CreateTeam',
+            data: {name: this.data.name},
+            success: res => {
+                this.setData({
+                    name: res?.result?.data.name || []
+                })
+                wx.switchTab({
+                    url: '/pages/team/team'
+                })
+            },
+            fail: err => {
+                console.log(err)
+            }
         })
     },
 

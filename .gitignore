@@ -21,7 +21,7 @@ project.config.json
 
 # cloudfunctions
 /cloudfunctions/*/node_modules
-/cloudfunctions/*/package.json
+# /cloudfunctions/*/package.json
 /cloudfunctions/*/package-lock.json
 
 #counter
