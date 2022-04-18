@@ -61,6 +61,7 @@ Page({
         wx.setNavigationBarTitle({
             title: that.data.pageTitle//设置页面标题
         })
+        console.log("new")
         // console.log(this.data.teams)
         // let l = this.data.teams.map(v => {
         //     return {
@@ -80,7 +81,7 @@ Page({
             name: 'GetTeamByUserId',
             data: {},
             success: res => {
-                console.log("?", res)
+                // console.log("?", res)
 
                 this.setData({
                     teamList: res?.result?.data || []
@@ -112,6 +113,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        console.log('show')
         this.onLoad();
     },
 

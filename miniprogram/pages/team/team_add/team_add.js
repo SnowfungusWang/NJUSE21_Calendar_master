@@ -28,17 +28,16 @@ Page({
             name: 'CreateTeam',
             data: {name: this.data.name},
             success: res => {
-                console.log("create team", res)
                 this.setData({
                     name: res?.result?.data.name || []
+                })
+                wx.switchTab({
+                    url: '/pages/team/team'
                 })
             },
             fail: err => {
                 console.log(err)
             }
-        })
-        wx.switchTab({
-            url: '/pages/team/team'
         })
     },
 

@@ -2,7 +2,8 @@ Component({
   lifetimes: {
     attached: function() {
       this.setData({
-        isFinish: this.data.initIsFinish
+        isFinish: this.data.initIsFinish,
+        isPastTime: new Date(this.data.ddl) < new Date()
       })
     }
   },
@@ -41,7 +42,8 @@ Component({
     }
   },
   data: {
-    isFinish: false
+    isFinish: false,
+    isPastTime: false
   },
   methods: {
     _clickBody() {
