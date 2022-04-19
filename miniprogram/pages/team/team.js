@@ -70,6 +70,7 @@ Page({
         const userId = wx.getStorageSync('userId')
         this.setData({
             userId: userId,
+            loading: true
         })
         wx.cloud.callFunction({
             name: "GetTeamByUserId",
@@ -95,7 +96,6 @@ Page({
     onLoad: function (options) {
         // this.checkNickName()
 
-        this.init();
         var that = this;
         that.setData({
             pageTitle: "我的团队", //页面标题
@@ -165,8 +165,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        console.log("show");
-        this.onLoad();
+        this.init();
     },
 
     /**

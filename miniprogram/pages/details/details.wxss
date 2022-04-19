@@ -86,7 +86,7 @@ flex: 1;
     }
  
     to {
-        height: 310rpx;
+        /* height: 310rpx; */
     }
 }
  

@@ -2,7 +2,7 @@
 <view class="add_title">
   <text>DDL名称：</text>
   <input class="new-todo" value="{{ title }}" 
-  placeholder="加个啊啊啊吧" 
+  placeholder="" 
   auto-focus bindinput="inputChangeHandle" bindconfirm="addTitleHandle"/>
 </view>  
 <view class="add_time">
