@@ -205,7 +205,7 @@ Page({
                 this.processRes(res.result.data, dayStr)
             },
             fail: err => {
-                console.error
+                console.log(err)
             },
         })
 

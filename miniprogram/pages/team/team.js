@@ -95,7 +95,9 @@ Page({
         // 初始化拉取信息
         wx.cloud.callFunction({
             name: "GetTeamByUserId",
-            data: {},
+            data: {
+                user_id: this.data.userId
+            },
             success: (res) => {
                 console.log("teamList", res)
                 this.setData({

@@ -7,7 +7,8 @@
         "pages/userCenter/userCenter",
         "pages/team/team",
         "pages/team/team_add/team_add",
-        "pages/team/team_show/team_show"
+        "pages/team/team_show/team_show",
+        "pages/team/team_invite/index"
     ],
     "window": {
         "backgroundColor": "#83B8E9",
