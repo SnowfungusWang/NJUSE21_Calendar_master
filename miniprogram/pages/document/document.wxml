@@ -5,7 +5,7 @@
     <view class="spin-wrapper" hidden="{{!loading}}">
         <i-spin size="large"></i-spin>
     </view>
-    <block wx:if="{{ checkPointList.length + passCheckPointList.length }}">
+    <block wx:if="{{ checkPointList.length + passCheckPointList.length }}" wx:if="{{!loading}}">
         <i-collapse name="{{name}}">
             <i-collapse-item title="已过期DDL" wx:if="{{passCheckPointList.length}}" name="pass">
                 <view slot="content">
