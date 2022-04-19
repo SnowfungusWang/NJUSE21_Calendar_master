@@ -4,6 +4,7 @@
     "i-panel": "../../../lib/iview/panel/index",
     "i-icon": "../../../lib/iview/icon/index",
     "i-modal": "../../../lib/iview/modal/index",
-    "i-message": "../../../lib/iview/message/index"
+    "i-message": "../../../lib/iview/message/index",
+    "i-spin": "../../../lib/iview/spin/index"
   }
 }

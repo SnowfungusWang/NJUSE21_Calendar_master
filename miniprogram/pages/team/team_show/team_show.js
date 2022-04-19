@@ -25,7 +25,8 @@ Page({
                 color: '#ed3f14',
                 loading: false
             }
-        ]
+        ],
+        spinShow: true
     },
 
     /**
@@ -64,6 +65,9 @@ Page({
                         })
                     }
                 }
+                this.setData({
+                    spinShow: false
+                })
             },
             fail: err => {
                 console.log(err);

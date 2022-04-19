@@ -1,5 +1,5 @@
 <!--miniprogram/pages/team/team_invite/index.wxml-->
-<view wx:if="{{!logged}}">
+<!-- <view wx:if="{{!logged}}">
   <view class='reminder'>
   确认微信授权登录?
 </view>
@@ -9,7 +9,7 @@
   bindgetuserinfo="onGetUserInfo"
 >
 登录</button>
-</view>
+</view> -->
 
 <i-modal title="确认加入？" visible="{{ visible }}" actions="{{ actions }}" bind:click="confirmJoin">
     
