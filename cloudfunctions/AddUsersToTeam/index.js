@@ -11,11 +11,10 @@ exports.main = async (event, context) => {
     let u = await db.collection('user_team').where({
       userId: user
     }).get()
+    // console.log("u", u)
     if (u.data.length !== 0) {
       db.collection('user_team').where({
-        data: {
           userId: user
-        }
       }).update({
         data: {
           teams: _.push(event.teamId)

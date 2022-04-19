@@ -6,14 +6,12 @@ const db = cloud.database()
 const _ = db.command
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
-  let cps;
+  const currentUser = wxContext.OPENID
   try {
     let ddl_list = await db.collection('checkpoints').where({
       ddl: _.lte(new Date(event.endDate)).and(_.gte(new Date(event.beginDate))),
-      userId: wxContext.OPENID
+      userId: currentUser
     }).get()
-    console.log("云函数内日期", event.beginDate, event.endDate)
-    console.log("openid", wxContext.OPENID)
     return ddl_list
   } catch (e) {
     console.error(e)
