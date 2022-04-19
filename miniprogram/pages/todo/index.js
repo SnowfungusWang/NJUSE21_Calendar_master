@@ -16,7 +16,8 @@ Page({
         endDate: new Date(),
         endDateString: new Date().format("yyyy-MM-dd"),
         trueddl: [],
-        refresh: false
+        refresh: false,
+        loading: true
     },
     onLoad: function () {
         this.rankType = "time"
@@ -119,7 +120,9 @@ Page({
 
     // 刷新页面
     refreshPage() {
-        console.log("refresh")
+        this.setData({
+            loading: true
+        })
         let checkPointList = []
         let leftCount = 0
         // 展示显示的list，计算完成数 
@@ -171,9 +174,11 @@ Page({
             checkPointList,
             leftCount,
             targetTime: targetTime,
-            refresh: !this.data.refresh
-            // clearTimer: false
+            refresh: !this.data.refresh,
+            loading: false
         })
+
+
     },
 
     toggleTodoHandle: function (e) {
