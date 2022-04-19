@@ -3,7 +3,7 @@ Page({
         rankisSelect: false,
         stateisSelect: false,
         teamNameSelected: '全部',
-        teamList: [{ teamName: 'hxh & zsx', teamId: "csxnb!" }],
+        teamList: [],
         checkPointList: [],
         teamCheckPoint: [],
         input: '',
@@ -22,13 +22,39 @@ Page({
         this.rankType = "time"
         this.teamIdSelected = "all"
         this.allCpList = []
+        const userId = wx.getStorageSync('userId')
+        this.setData({
+            userId: userId
+        })
     },
     onShow: function () {
         var that = this
         that.teamNameDict = [];
         that.teamNameDict[""] = "个人"
-        // console.log('myTeams', that.teamNameDict)
-        that.fetchCpListAndSetDate(new Date(), that.refreshPage.bind(that))
+        that.teamNameDict = []
+        wx.cloud.callFunction({
+            name: 'GetTeamByUserId',
+            data: { user_id: this.data.userId },
+            success: res => {
+                let teamList = []
+                res.result.data.forEach(element => {
+                    that.teamNameDict[element._id] = element.name
+                    teamList.push({
+                        teamId: element._id,
+                        teamName: element.name
+                    })
+                });
+                that.setData({
+                    teamList
+                })
+                that.teamNameDict[""] = "个人"
+                // console.log('myTeams', that.teamNameDict)
+                that.fetchCpListAndSetDate(new Date(), that.refreshPage.bind(that))
+            },
+            fail: err => {
+                console.error(err)
+            },
+        })
     },
     // 获取Cp数据, 时间范围为 [today, endDate]
     // 获取到数据之后callback
@@ -43,7 +69,6 @@ Page({
                 "endDate": endDate.format("yyyy-MM-dd") + " 23:59"
             },
             success: res => {
-                // console.log('cpList', res)
                 let checkPointList = []
                 res.result.data.forEach(cpObj => {
                     // TODO
@@ -89,10 +114,6 @@ Page({
             });
         }
         let targetTime = nearDate === '' ? -1 : nearDate.getTime()
-        // this.setData({
-        //     targetTime: targetTime,
-        //     clearTimer: false
-        // })
         return targetTime
     },
 
@@ -154,8 +175,6 @@ Page({
             // clearTimer: false
         })
     },
-
-
 
     toggleTodoHandle: function (e) {
         var index = e.currentTarget.dataset.index

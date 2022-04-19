@@ -36,7 +36,6 @@ App({
         wx.setEnableDebug({
             enableDebug: true
         })
-
         login();
     }
 })

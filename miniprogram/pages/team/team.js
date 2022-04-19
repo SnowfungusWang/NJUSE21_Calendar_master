@@ -64,39 +64,16 @@ Page({
         userName: "",
         userIcon: "",
     },
-    login() {
-        wx.cloud.callFunction({
-            name: "GetUserInfo",
-            data: {},
-            success: res => {
-                console.log(res)
-                if (res.result.data.length === 0) {
-                    try {
-                        wx.setStorageSync('hasUserInfo', false)
-                    } catch (e) { }
-                    finally {
-                        wx.reLaunch({ url: "/pages/userCenter/userCenter" })
-                    }
-                } else {
-                    const usr = res.result.data[0]
-                    this.setData({
-                        userId: usr.userId,
-                    })
-                    this.init();
-                }
-            },
-            fail: err => {
-                console.log("err", err);
-            }
-        })
-    },
-
     init() {
         // 初始化拉取信息
+        const userId = wx.getStorageSync('userId')
+        this.setData({
+            userId: userId
+        })
         wx.cloud.callFunction({
             name: "GetTeamByUserId",
             data: {
-                user_id: this.data.userId
+                user_id: userId
             },
             success: (res) => {
                 console.log("teamList", res)
@@ -116,7 +93,7 @@ Page({
     onLoad: function (options) {
         // this.checkNickName()
 
-        this.login();
+        this.init();
         var that = this;
         that.setData({
             pageTitle: "我的团队", //页面标题
@@ -156,7 +133,7 @@ Page({
     },
 
     /**
-     * 初次访问协作页面，设置nickname
+     * 初次访问协作页面
      */
     setNickName: function (nickName, icon) {
         wx.cloud.callFunction({

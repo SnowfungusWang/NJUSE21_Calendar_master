@@ -97,7 +97,7 @@ Page({
             success: res => {
                 console.log("save", res)
                 wx.switchTab({
-                    url: '/pages/team/team',
+                    url: '/pages/todo/index',
                 })
             },
             fail: err => {
