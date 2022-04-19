@@ -92,6 +92,7 @@ Page({
             focus: 'false',
             textarea: this.data.textarea
         })
+
         //调用云函数
         wx.cloud.callFunction({
             name: 'CreateCheckPoint',
@@ -99,7 +100,7 @@ Page({
                 title: this.data.title,
                 details: this.data.textarea,
                 participateTeamId: this.data.teamid,
-                ddl: this.data.startDate,
+                ddl: new Date(this.data.startDate).getTime(),
                 isFinish: false,
                 urgency: this.data.urgency
             },
@@ -131,7 +132,7 @@ Page({
             teamid: '',
         })
         const userId = wx.getStorageSync('userId')
-        console.log('userInfo', userId)
+        // console.log('userInfo', userId)
         //获取队名
         wx.cloud.callFunction({
             name: 'GetTeamByUserId',

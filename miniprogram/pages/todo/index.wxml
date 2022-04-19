@@ -37,7 +37,7 @@
 <view class='ddl'>
     <i-row>
         <i-col span="7" i-class="count">
-            <text>{{checkPointList.length-leftCount}} / {{checkPointList.length}}</text>
+            <text>{{checkPointList.length + passCheckPointList.length -leftCount}} / {{checkPointList.length + passCheckPointList.length}}</text>
         </i-col>
         <i-col span="15" i-class="latest_ddl">
             <text class="type-title">当前最紧迫的DDL：</text>
@@ -52,13 +52,27 @@
 </view>
 
 <view class=" container" wx:if="{{!loading}}">
-    <block wx:if="{{ checkPointList.length }}">
-        <view class="checkPointList">
-            <check-point-card view wx:for="{{checkPointList}}" wx:key="_id" checkPointId="{{item.checkPointId}}" title="{{item.title}}" details="{{item.details}}" ddl="{{item.ddl}}" teamName="{{item.teamName}}" initIsFinish="{{item.isFinish}}" urgencyColor="{{item.urgencyColor}}" bind:clickBody='checkDetail' bind:clickCheckbox='_onChangeCheckPointFinish' />
-        </view>
-        <view class="footer">
-            <text wx:if="{{ leftCount }}">{{ leftCount }} {{ leftCount === 1 ? '个事项' : '个事项' }} 未完成</text>
-        </view>
+    <view class="footer">
+        <text wx:if="{{ leftCount }}">{{ leftCount }} {{ leftCount === 1 ? '个事项' : '个事项' }} 未完成</text>
+    </view>
+    <block wx:if="{{ checkPointList.length + passCheckPointList.length }}">
+        <i-collapse name="{{name}}">
+            <i-collapse-item title="已过期DDL" wx:if="{{passCheckPointList.length}}" name="pass">
+                <view slot="content">
+                    <view class="checkPointList">
+                        <check-point-card view wx:for="{{passCheckPointList}}" wx:key="_id" checkPointId="{{item.checkPointId}}" title="{{item.title}}" details="{{item.details}}" ddl="{{item.ddl}}" teamName="{{item.teamName}}" initIsFinish="{{item.isFinish}}" urgencyColor="{{item.urgencyColor}}" bind:clickBody='checkDetail' bind:clickCheckbox='_onChangeCheckPointFinish' />
+                    </view>
+                </view>
+
+            </i-collapse-item>
+            <i-collapse-item title="即将到来的DDL" wx:if="{{checkPointList.length}}" name="future">
+                <view slot="content">
+                    <view class="checkPointList">
+                        <check-point-card view wx:for="{{checkPointList}}" wx:key="_id" checkPointId="{{item.checkPointId}}" title="{{item.title}}" details="{{item.details}}" ddl="{{item.ddl}}" teamName="{{item.teamName}}" initIsFinish="{{item.isFinish}}" urgencyColor="{{item.urgencyColor}}" bind:clickBody='checkDetail' bind:clickCheckbox='_onChangeCheckPointFinish' />
+                    </view>
+                </view>
+            </i-collapse-item>
+        </i-collapse>
     </block>
     <block wx:else>
         <view class="empty">

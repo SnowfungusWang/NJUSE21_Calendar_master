@@ -1,34 +1,27 @@
 <view>
     <view class="calendar-wrapper">
-        <calendar
-            year="{{year}}"
-            month="{{month}}"
-            weeks-type="full-en"
-            cell-size="30"
-            show-more-days="{{true}}"
-            calendar-style="calendar"
-            header-style="calendar-header"
-            board-style="calendar-board"
-            days-color="{{daysColorList}}"
-            bindnextMonth="onMonthChange"
-            bindprevMonth="onMonthChange"
-            binddataChange="onMonthChange"
-            binddayClick="onDayClick"
-        />
+        <calendar year="{{year}}" month="{{month}}" weeks-type="full-en" cell-size="30" show-more-days="{{true}}" calendar-style="calendar" header-style="calendar-header" board-style="calendar-board" days-color="{{daysColorList}}" bindnextMonth="onMonthChange" bindprevMonth="onMonthChange" binddataChange="onMonthChange" binddayClick="onDayClick" />
     </view>
-    <view class="spin-wrapper" hidden="{{!loading}}" >
+    <view class="spin-wrapper" hidden="{{!loading}}">
         <i-spin size="large"></i-spin>
     </view>
-    <check-point-card
-        wx:for="{{checkPointList}}"
-        wx:key="key"
-        bind:clickBody="onClickCardBody"
-        bind:clickCheckbox="onClickCardCheckbox"
-        checkPointId="{{item.checkPointId}}"
-        title="{{item.title}}" details="{{item.details}}"
-        ddl="{{item.ddl}}" 
-        teamName="{{item.teamName}}"
-        urgencyColor="{{item.urgencyColor}}" initIsFinish="{{item.isFinish}}"
-        canChangeFinish="{{false}}"
-    />
+    <block wx:if="{{ checkPointList.length + passCheckPointList.length }}">
+        <i-collapse name="{{name}}">
+            <i-collapse-item title="已过期DDL" wx:if="{{passCheckPointList.length}}" name="pass">
+                <view slot="content">
+                    <view class="checkPointList">
+                        <check-point-card view wx:for="{{passCheckPointList}}" wx:key="_id" checkPointId="{{item.checkPointId}}" title="{{item.title}}" details="{{item.details}}" ddl="{{item.ddl}}" teamName="{{item.teamName}}" initIsFinish="{{item.isFinish}}" urgencyColor="{{item.urgencyColor}}" bind:clickBody='checkDetail' bind:clickCheckbox='_onChangeCheckPointFinish' />
+                    </view>
+                </view>
+
+            </i-collapse-item>
+            <i-collapse-item title="即将到来的DDL" wx:if="{{checkPointList.length}}" name="future">
+                <view slot="content">
+                    <view class="checkPointList">
+                        <check-point-card view wx:for="{{checkPointList}}" wx:key="_id" checkPointId="{{item.checkPointId}}" title="{{item.title}}" details="{{item.details}}" ddl="{{item.ddl}}" teamName="{{item.teamName}}" initIsFinish="{{item.isFinish}}" urgencyColor="{{item.urgencyColor}}" bind:clickBody='checkDetail' bind:clickCheckbox='_onChangeCheckPointFinish' />
+                    </view>
+                </view>
+            </i-collapse-item>
+        </i-collapse>
+    </block>
 </view>

@@ -5,6 +5,7 @@ Page({
         teamNameSelected: '全部',
         teamList: [],
         checkPointList: [],
+        passCheckPointList: [],
         teamCheckPoint: [],
         input: '',
         leftCount: 0,
@@ -17,7 +18,9 @@ Page({
         endDateString: new Date().format("yyyy-MM-dd"),
         trueddl: [],
         refresh: false,
-        loading: true
+        loading: true,
+        name: 'future'
+
     },
     onLoad: function () {
         this.rankType = "time"
@@ -74,7 +77,9 @@ Page({
                 res.result.data.forEach(cpObj => {
                     // TODO
                     // console.log(cpObj)
-                    let ddlDate = new Date(cpObj.ddl)
+                    let ddlDate = new Date(Date.parse(cpObj.ddl))
+                    // console.log(ddlDate, cpObj.ddl, ddlDate.toLocaleString())
+
                     // CheckPointCard数据
                     checkPointList.push({
                         checkPointId: cpObj._id,
@@ -124,11 +129,17 @@ Page({
             loading: true
         })
         let checkPointList = []
+        let passCheckPointList = []
         let leftCount = 0
+        const curDate = new Date();
         // 展示显示的list，计算完成数 
         this.allCpList.forEach(element => {
             if (this.teamIdSelected == "all" || this.teamIdSelected == element.teamId) {
-                checkPointList.push(element)
+                if (new Date(element.ddl) > curDate) {
+                    checkPointList.push(element)
+                } else {
+                    passCheckPointList.push(element)
+                }
                 if (!element.isFinish)
                     leftCount++
             }
@@ -172,6 +183,7 @@ Page({
 
         this.setData({
             checkPointList,
+            passCheckPointList,
             leftCount,
             targetTime: targetTime,
             refresh: !this.data.refresh,

@@ -5,7 +5,9 @@ Page({
         month: 2,
         daysColorList: [],
         checkPointList: [],
-        loading: true
+        passCheckPointList: [],
+        loading: true,
+        name: 'future'
     },
     onShow: function (options) {
         let today = new Date()
@@ -84,20 +86,13 @@ Page({
 
     processRes(ddlList, type) {
         var checkPointList = []
+        let passCheckPointList = []
         var days = []
+        const curDay = new Date();
         // 处理checkPointList
         ddlList.forEach(cpObj => {
             let ddlDate = new Date(cpObj.ddl)
             // CheckPointCard数据
-            checkPointList.push({
-                checkPointId: cpObj._id,
-                title: cpObj.title,
-                details: cpObj.details,
-                ddl: ddlDate.format("yyyy.MM.dd hh:mm"),
-                teamName: this.teamMap.get(cpObj.participateTeamId),
-                isFinish: cpObj.isFinish,
-                urgencyColor: this.getUrgencyColor(cpObj.urgency)
-            })
             // 统计CheckPoint完成情况(按日)
             let cpDateStr = ddlDate.format("yyyy-MM-dd")
             if (days[cpDateStr] == null)
@@ -106,6 +101,29 @@ Page({
                 days[cpDateStr].nb++
             else
                 days[cpDateStr].gg++
+
+            if (curDay < ddlDate) {
+                checkPointList.push({
+                    checkPointId: cpObj._id,
+                    title: cpObj.title,
+                    details: cpObj.details,
+                    ddl: ddlDate.format("yyyy.MM.dd hh:mm"),
+                    teamName: this.teamMap.get(cpObj.participateTeamId),
+                    isFinish: cpObj.isFinish,
+                    urgencyColor: this.getUrgencyColor(cpObj.urgency)
+                })
+            } else {
+                passCheckPointList.push({
+                    checkPointId: cpObj._id,
+                    title: cpObj.title,
+                    details: cpObj.details,
+                    ddl: ddlDate.format("yyyy.MM.dd hh:mm"),
+                    teamName: this.teamMap.get(cpObj.participateTeamId),
+                    isFinish: cpObj.isFinish,
+                    urgencyColor: this.getUrgencyColor(cpObj.urgency)
+                })
+            }
+
         });
         // 按照时间排序
         let timeRankFunc = (a, b) => {
@@ -116,11 +134,13 @@ Page({
             return 1
         }
         checkPointList.sort(timeRankFunc)
+        passCheckPointList.sort(timeRankFunc)
 
         // 决定日历中Day的颜色
         var daysColorList = this.getDayColor(days, type)
         this.setData({
             checkPointList,
+            passCheckPointList,
             loading: false,
             daysColorList
         })

@@ -4,6 +4,8 @@
         "i-col": "../../lib/iview/col/index",
         "i-count-down": "../../lib/iview/count-down/index",
         "check-point-card": "../../components/CheckPointCard/CheckPointCard",
-        "i-spin": "../../lib/iview/spin/index"
+        "i-spin": "../../lib/iview/spin/index",
+        "i-collapse": "../../lib/iview/collapse/index",
+        "i-collapse-item": "../../lib/iview/collapse-item/index"
     }
 }

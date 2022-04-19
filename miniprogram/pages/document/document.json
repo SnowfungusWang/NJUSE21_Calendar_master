@@ -2,6 +2,8 @@
   "usingComponents": {
     "calendar": "plugin://calendar/calendar",
     "check-point-card": "../../components/CheckPointCard/CheckPointCard",
-    "i-spin": "../../lib/iview/spin/index"
+    "i-spin": "../../lib/iview/spin/index",
+    "i-collapse": "../../lib/iview/collapse/index",
+    "i-collapse-item": "../../lib/iview/collapse-item/index"
   }
 }
