@@ -63,12 +63,13 @@ Page({
         userId: "",
         userName: "",
         userIcon: "",
+        loading: true,
     },
     init() {
         // 初始化拉取信息
         const userId = wx.getStorageSync('userId')
         this.setData({
-            userId: userId
+            userId: userId,
         })
         wx.cloud.callFunction({
             name: "GetTeamByUserId",
@@ -79,6 +80,7 @@ Page({
                 console.log("teamList", res)
                 this.setData({
                     teamList: res?.result?.data || [],
+                    loading: false
                 });
             },
             fail: (err) => {

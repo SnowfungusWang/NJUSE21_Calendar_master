@@ -20,4 +20,5 @@
   background-color: #bc9f77;
   position: relative;
   top: 5px;
+  margin-right: 3%;
 }

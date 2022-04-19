@@ -17,6 +17,9 @@
   margin-left: 10rpx;
   color: rgb(129, 198, 238);
 }
-/* .participant{
-  margin-top: 10rpx;
-} */
+
+.spin-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}

@@ -9,7 +9,7 @@ Page({
         input: '',
         leftCount: 0,
         allCompleted: false,
-        targetTime: new Date().getTime() + 84813000,
+        targetTime: -1,
         clearTimer: false,
         rank: '按时间排序',
         rankSelect: 'time',
@@ -53,7 +53,7 @@ Page({
                 that.fetchCpListAndSetDate(new Date(), that.refreshPage.bind(that))
             },
             fail: err => {
-                console.error(err)
+                console.log(err)
             },
         })
     },
@@ -97,7 +97,7 @@ Page({
                     callback()
             },
             fail: err => {
-                console.error
+                console.log(err)
             },
         })
     },
@@ -177,8 +177,6 @@ Page({
             refresh: !this.data.refresh,
             loading: false
         })
-
-
     },
 
     toggleTodoHandle: function (e) {

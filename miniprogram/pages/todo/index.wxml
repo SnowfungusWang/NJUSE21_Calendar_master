@@ -28,7 +28,7 @@
     <text> 排序类型：{{rank}}</text>
 </view>
 <!-- 按时间排序 -->
-<view class="select_box" wx:if="{{rankisSelect}}">
+<view class="select_box" hidden="{{!rankisSelect}}">
     <view class="select_one" bindtap="rankSelect" data-ranktype="time">时间排序</view>
     <view class="select_one" bindtap="rankSelect" data-ranktype="urgency">重要排序</view>
     <view class="select_two" bindtap="rankSelect" data-ranktype="mix">综合排序</view>

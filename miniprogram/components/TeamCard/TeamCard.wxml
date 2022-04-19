@@ -10,7 +10,7 @@
             </view>
             <view class='i-card-content-desc-members'>
                 <text class='teamName'>成员：</text>
-                <image wx:for="{{memberList}}" wx:key="{{userId}}" src="{{item.avaterUrl}}" class='members'></image>
+                <image wx:for="{{memberList}}" wx:key="{{userId}}" src="{{item.userIcon}}"  wx:if="{{item !== null}}" class='members'></image>
             </view>
         </view>
     </view>

@@ -76,7 +76,6 @@
     overflow: hidden;
     animation: myfirst 0.5s;
     font-size: 30rpx;
-
 }
 
 @keyframes myfirst {
@@ -85,7 +84,9 @@
     }
 
     to {
-        height: 310rpx;
+        /* min-height: 250rpx;
+        height: auto; */
+        /* height: 310rpx; */
     }
 }
 

@@ -1,29 +1,19 @@
 <!--miniprogram/pages/team/team.wxml-->
 <view class="teamInfo">
-    <text class='organizer'>我参与的团队</text>
-    <scroll-view   
-        class="vertical show" 
-        scroll-y="true" 
-        scroll-top="0" 
-        >
-        <i-card 
-            wx:for="{{ teamList }}"
-            wx:key="{{ teamId }}" 
-            teamId = "{{item._id}}"
-            thumb="https://i.loli.net/2017/08/21/599a521472424.jpg"
-            teamName="{{ item.name }}"
-            memberList="{{item.memberList}}"
-            bindmyevent="myEventListener"
-            >
+    <!-- <text class='organizer'>我参与的团队</text> -->
+
+    <view class="spin-wrapper" hidden="{{!loading}}">
+        <i-spin size="large"></i-spin>
+    </view>
+    <scroll-view class="vertical show" scroll-y="true" scroll-top="0" hidden="{{loading}}">
+        <i-card wx:for="{{ teamList }}" wx:key="{{ teamId }}" teamId="{{item._id}}" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg" teamName="{{ item.name }}" memberList="{{item.memberList}}" bindmyevent="myEventListener">
         </i-card>
     </scroll-view>
 </view>
 <movable-area style="pointer-events: none;height: 100%;width: 100%;       position:absolute;right:0px;bottom:0px;">
-  <movable-view direction="all" style="pointer-events: auto;height: 50px;width: 50px; position:absolute;left:90%;top:90%;">
-    <navigator url="/pages/team/team_add/team_add">
-		  <image src="../../images/todo/tianjia.png" style="height: 60px;width: 60px;"></image>
-    </navigator>
-	</movable-view>
+    <movable-view direction="all" style="pointer-events: auto;height: 50px;width: 50px; position:absolute;left:90%;top:90%;">
+        <navigator url="/pages/team/team_add/team_add">
+            <image src="../../images/todo/tianjia.png" style="height: 60px;width: 60px;"></image>
+        </navigator>
+    </movable-view>
 </movable-area>
-
-

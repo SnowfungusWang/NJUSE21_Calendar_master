@@ -1,13 +1,14 @@
 export const login = () => {
-    const hasUserInfo = wx.getStorageSync('hasUserInfo');
-    if (!hasUserInfo) {
+    const userId = wx.getStorageSync('userId');
+    console.log("i am login~", userId === '')
+    if (userId === '') {
         wx.cloud.callFunction({
             name: "GetUserInfo",
             data: {},
             success: res => {
                 if (res.result.data.length === 0) {
                     try {
-                        wx.setStorageSync('hasUserInfo', false)
+                        // wx.setStorageSync('hasUserInfo', false)
                     } catch (e) { }
                     finally {
                         wx.reLaunch({ url: "/pages/userCenter/userCenter" })
@@ -20,9 +21,6 @@ export const login = () => {
                         wx.setStorageSync('userId', usr.userId)
                         wx.setStorageSync('userIcon', usr.userIcon)
                     } catch (e) { }
-                    this.setData({
-                        userId: usr.userId,
-                    })
                 }
             },
             fail: err => {

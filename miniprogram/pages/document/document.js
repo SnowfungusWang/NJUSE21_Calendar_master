@@ -34,7 +34,7 @@ Page({
                 })
             },
             fail: err => {
-                console.error(err)
+                console.log(err)
             },
         })
     },
@@ -152,7 +152,7 @@ Page({
                 this.processRes(res.result.data, 'month')
             },
             fail: err => {
-                console.error
+                console.log(err)
             },
         })
     },

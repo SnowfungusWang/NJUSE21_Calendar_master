@@ -12,9 +12,9 @@
     </i-panel>
     <i-panel title="团队成员">
         <block wx:for='{{members}}' wx:key='{{nickName}}'>
-            <view class='content'>
+            <view class='content' wx:if="{{item !== null}}">
+                <image src='{{item.userIcon}}' class='content-image'></image>
                 <text class="content-title">{{item.nickName}}</text>
-                <image src='{{item.avaterUrl}}' class='content-image'></image>
             </view>
         </block>
     </i-panel>

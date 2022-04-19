@@ -172,7 +172,7 @@ Page({
         })
       },
       fail: err => {
-        console.error
+        console.log(err)
       }
     })
   },
@@ -393,7 +393,7 @@ Page({
           })
       },
       fail: err => {
-        console.error
+        console.log(err)
       }
     })
   }
